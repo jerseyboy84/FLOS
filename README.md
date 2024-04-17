@@ -27,7 +27,7 @@ The student is provided with their id and is only authorized to:
 
 The backend is hosted on Heroku, and can accessed at https://evening-shelf-04999-b23c8136f825.herokuapp.com/
 
-The code repo is https://git.heroku.com/evening-shelf-04999.git
+The code repo is https://github.com/jerseyboy84/FLOS
 
 #  ----------------------------------------------------------------
 #  Getting Started
