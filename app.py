@@ -2,8 +2,7 @@ from flask import Flask, request, abort, jsonify
 from models import setup_db, Student, Instructor
 from flask_cors import CORS
 from auth import AuthError, requires_auth
-import collections
-collections.Callable = collections.abc.Callable
+import collections.abc as collections
 
 
 def create_app(test_config=None):
