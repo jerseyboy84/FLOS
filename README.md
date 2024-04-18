@@ -35,7 +35,7 @@ The code repo is https://github.com/jerseyboy84/FLOS
 
 Local development and testing was done before deploying to Heroku.  
 
-The "flos" database has been pre-populated with 10 students and 6 instructors.   This database can be re-initialized with these CLI commands:
+The "flos" database has been pre-populated with 10 students and 6 instructors.   This database can be re-initialized locally with these CLI commands:
 
 dropdb flos
 createdb flos
@@ -66,9 +66,7 @@ auth.py - contains the logic to authenticate the authorization header, and check
 test_app.py - contains the TestCase class unittest boh positive and negative test cases 
 
 
-To start the backend operation, run:
-flask run --reload
-
+To start the backend operation, run this command: flask run
 
 
 #  ----------------------------------------------------------------
@@ -345,6 +343,13 @@ o	09 - Fail 404 (student, use invalid id)
 •	Misc bad requests
 o	26 - Fail 405 (student, attempt to delete instructor matches)
 o	27 - Fail 400 (provost, attempt to post student without a name)
+
+#  ----------------------------------------------------------------
+#  Postman Test framework
+#  ----------------------------------------------------------------
+
+Postman collections were used to test the deployed version on Heroku.
+There is a Postman variable defined to set the "base_url" for local ("FLOS") or Heroku ("production") testing
 
 
 #  ----------------------------------------------------------------

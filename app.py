@@ -14,7 +14,7 @@ def create_app(test_config=None):
     @app.route('/alive', methods=['GET'])
     def alive():
         return jsonify({
-            'success': "Hell yeah!"
+            'success': "Alive and well!"
             })
 
     @app.route('/allStudents', methods=['GET'])

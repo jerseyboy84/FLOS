@@ -1,0 +1,907 @@
+{
+	"info": {
+		"_postman_id": "3a49b737-01c3-4afd-80a7-4587244c9d05",
+		"name": "FLOS",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) in \"Tests\" to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32867659"
+	},
+	"item": [
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "all instructors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/allInstructors",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"allInstructors"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "all students",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/allStudents",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"allStudents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "instructor matches - student 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include('\"totalMatchInstructors\": 2');\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/instructorMatches/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"instructorMatches",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update student 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Kayla Rhodes\",\n    \"studyLanguage\": \"Chinese\",\n    \"nativeLanguage\": \"English\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/student/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student",
+								"1"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "update instructor 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Fernando Gomez\",\r\n    \"teachLanguage\": \"Spanish\",\r\n    \"fluentLanguage\": \"Chinese\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/instructor/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"instructor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete last student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/student/{{last_student_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student",
+								"{{last_student_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete last instructor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/instructor/{{last_instructor_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"instructor",
+								"{{last_instructor_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add instructor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sean Li\",\n    \"teachLanguage\": \"English\",\n    \"fluentLanguage\": \"Chinese\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/instructor",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"instructor"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "add student",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Xiaolan Zhuo\",\r\n    \"studyLanguage\": \"English\",\r\n    \"nativeLanguage\": \"Chinese\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/student",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IktFS1ZJajg0S3NrTmhrbTBRdnVjXyJ9.eyJpc3MiOiJodHRwczovL2hvcm55Z29hdC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjYxYWRhZTk1ZTQ0ZTMzNmM2NmJhMmI0IiwiYXVkIjoiRkxPUyIsImlhdCI6MTcxMzQ3MTg0OSwiZXhwIjoxNzEzNTU4MjQ5LCJzY29wZSI6IiIsImF6cCI6IkJrUzJRcnVaUzJDWmRkcEV6MllVTHBkVGNWRVRDNkxTIiwicGVybWlzc2lvbnMiOlsiZ2V0OiBpbnN0cnVjdG9yTWF0Y2hlcyJdfQ.UMJ73w_HTrTajbyfhiVUs48h9RQhDXjX3PPl-jjwFG_wXsZZanepaZQzDam-o8hvp1wwrbaoY0emWpmchwg8VuHNV45uiCrUVmMQx-oU2kp3N_L2Stf-YSbNF-uC_5niJrRK8FvIzuu3VOuKD11Mj2ZKdhg9SaaSspvw_VaM8PiPAeBnD7OsJcCqbtZinsFT83YWAN7_VU6aMOXkndp4ajJQuke1P7r4I_CPZ8ZiAa3Bwc0oIttF1pcMSFrljz0H8Bwhiuyp1h-wnnO77_e1XEE1TT7OZrniZyWAnNmniCnhBN6R_yuG3yJomS_Zsg6uWu7nmbKelP_eHj__v0RrFw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"pm.environment.get(\"variable_key\");"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Provost",
+			"item": [
+				{
+					"name": "all instructors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/allInstructors",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"allInstructors"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "all students",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/allStudents",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"allStudents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "instructor matches - student 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include('\"totalMatchInstructors\": 2');\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/instructorMatches/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"instructorMatches",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update student 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Kayla Rhodes\",\n    \"studyLanguage\": \"Chinese\",\n    \"nativeLanguage\": \"English\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/student/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student",
+								"1"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "revert student 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Kayla Rhodes\",\r\n    \"studyLanguage\": \"Spanish\",\r\n    \"nativeLanguage\": \"English\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/student/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update instructor 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Random Babble\",\r\n    \"teachLanguage\": \"Creole\",\r\n    \"fluentLanguage\": \"Latin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/instructor/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"instructor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "revert instructor 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Fernando Gomez\",\r\n    \"teachLanguage\": \"Spanish\",\r\n    \"fluentLanguage\": \"English\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/instructor/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"instructor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete last student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/student/{{last_student_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student",
+								"{{last_student_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete last instructor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/instructor/{{last_instructor_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"instructor",
+								"{{last_instructor_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add instructor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let x = pm.environment.get(\"last_instructor_id\");\r",
+									"x ++\r",
+									"pm.environment.set(\"last_instructor_id\", x);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Random Babble\",\n    \"teachLanguage\": \"pigLatin\",\n    \"fluentLanguage\": \"Creole\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/instructor",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"instructor"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "add student",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let y = pm.environment.get(\"last_student_id\");\r",
+									"y ++\r",
+									"pm.environment.set(\"last_student_id\", y);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Xiaolan Zhuo\",\r\n    \"studyLanguage\": \"English\",\r\n    \"nativeLanguage\": \"Chinese\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/student",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IktFS1ZJajg0S3NrTmhrbTBRdnVjXyJ9.eyJpc3MiOiJodHRwczovL2hvcm55Z29hdC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjYxYWQ5OTIwYmFmNzgwY2FhOTZlZTdjIiwiYXVkIjoiRkxPUyIsImlhdCI6MTcxMzQ3MTk1OCwiZXhwIjoxNzEzNTU4MzU4LCJzY29wZSI6IiIsImF6cCI6IkJrUzJRcnVaUzJDWmRkcEV6MllVTHBkVGNWRVRDNkxTIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOiBpbnN0cnVjdG9yIiwiZGVsZXRlOiBzdHVkZW50IiwiZ2V0OiBpbnN0cnVjdG9yTWF0Y2hlcyIsImdldDogaW5zdHJ1Y3RvcnMiLCJnZXQ6c3R1ZGVudHMiLCJwYXRjaDogaW5zdHJ1Y3RvciIsInBhdGNoOiBzdHVkZW50IiwicG9zdDogaW5zdHJ1Y3RvciIsInBvc3Q6IHN0dWRlbnQiXX0.Wtla4EbqA3uzWHuDqzL8ph7gRQbtKmsKaUdEnZdWLXhc9Gx3zjNRAElpzLBNexgbQkbSn49I5aFPGoPH2g4Fw2L2iHFp3I-445yCR3QKs-Ge390tP7JjRq8ZvQRfAnkdD6eTZVWuusy0Oewwc0a7MZdtt0mH_nJSOqu4Go6bXV_psAXB-GAPYavV6ozXRuQOEUeLqqhUq-y2ZoJ9ZXl08J7sPto4a3vyaLBJKuZrDZNRm4ukFbfGhuxb5savGK7u1-zw7EmK6yvwaM5B9Jz8-iy4ugMrPBi0Db6gIhgoD_Oqz272oBA_S7XPkOuCiPbN1lUREboi0lQbxonKRP9Cdw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"pm.environment.get(\"variable_key\");"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
