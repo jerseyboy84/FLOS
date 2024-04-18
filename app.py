@@ -11,6 +11,11 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app)
 
+    @app.route('/alive', methods=['GET'])
+    def alive():
+        print('Yes')
+        return
+
     @app.route('/allStudents', methods=['GET'])
     @requires_auth('get:students')
     def allStudents():
