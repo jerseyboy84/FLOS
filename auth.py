@@ -1,9 +1,9 @@
+import collections.abc as collections
 import json
 from flask import request, abort
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
-import collections.abc as collections
 
 AUTH0_DOMAIN = 'hornygoat.us.auth0.com'
 ALGORITHMS = ['RS256']
