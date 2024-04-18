@@ -5,7 +5,6 @@ from flask_cors import CORS
 from auth import AuthError, requires_auth
 
 
-
 def create_app(test_config=None):
 
     app = Flask(__name__)
@@ -14,8 +13,9 @@ def create_app(test_config=None):
 
     @app.route('/alive', methods=['GET'])
     def alive():
-        print('Yes')
-        return
+        return jsonify({
+            'success': "Hell yeah!"
+            })
 
     @app.route('/allStudents', methods=['GET'])
     @requires_auth('get:students')
