@@ -18,7 +18,7 @@ def create_app(test_config=None):
             })
 
     @app.route('/allStudents', methods=['GET'])
-    @requires_auth('get:students')
+    #@requires_auth('get:students')
     def allStudents():
         try:
             students = Student.query.all()
@@ -34,7 +34,7 @@ def create_app(test_config=None):
             abort(404)
 
     @app.route('/student', methods=['POST'])
-    @requires_auth('post: student')
+    #@requires_auth('post: student')
     def addStudent():
         content = request.get_json()
         new_name = content.get('name', None)
@@ -62,7 +62,7 @@ def create_app(test_config=None):
             abort(400)
 
     @app.route('/student/<int:student_id>', methods=['PATCH'])
-    @requires_auth('patch: student')
+    #@requires_auth('patch: student')
     def updateStudent(student_id):
         student = Student.query.filter(Student.id == student_id).one_or_none()
         if student is None:
@@ -80,7 +80,7 @@ def create_app(test_config=None):
             })
 
     @app.route('/student/<int:student_id>', methods=['DELETE'])
-    @requires_auth('delete: student')
+    #@requires_auth('delete: student')
     def deleteStudent(student_id):
         try:
             student = Student.query.filter(
@@ -97,7 +97,7 @@ def create_app(test_config=None):
             abort(404)
 
     @app.route('/allInstructors', methods=['GET'])
-    @requires_auth('get: instructors')
+    #@requires_auth('get: instructors')
     def allInstructors():
         try:
             instructors = Instructor.query.all()
@@ -114,7 +114,7 @@ def create_app(test_config=None):
             abort(404)
 
     @app.route('/instructor', methods=['POST'])
-    @requires_auth('post: instructor')
+    #@requires_auth('post: instructor')
     def addInstructor():
         content = request.get_json()
         new_name = content.get('name', None)
@@ -142,7 +142,7 @@ def create_app(test_config=None):
             abort(400)
 
     @app.route('/instructor/<int:instructor_id>', methods=['PATCH'])
-    @requires_auth('patch: instructor')
+    #@requires_auth('patch: instructor')
     def updateInstructor(instructor_id):
         instructor = Instructor.query.filter(
                      Instructor.id == instructor_id).one_or_none()
@@ -161,7 +161,7 @@ def create_app(test_config=None):
             })
 
     @app.route('/instructor/<int:instructor_id>', methods=['DELETE'])
-    @requires_auth('delete: instructor')
+    #@requires_auth('delete: instructor')
     def deleteInstructor(instructor_id):
         try:
             instructor = Instructor.query.filter(
@@ -178,7 +178,7 @@ def create_app(test_config=None):
             abort(404)
 
     @app.route('/instructorMatches/<int:student_id>', methods=['GET'])
-    @requires_auth('get: instructorMatches')
+    #@requires_auth('get: instructorMatches')
     def instructorMatches(student_id):
         try:
             student = Student.query.filter(
