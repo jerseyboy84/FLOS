@@ -1,8 +1,21 @@
+
+import json
+import dateutil.parser
+import babel
+from flask import Flask, render_template, request, Response, flash, redirect, url_for, abort, jsonify
+from flask_moment import Moment
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+import logging
+from logging import Formatter, FileHandler
+from flask_wtf import Form
+from forms import ArtistForm
 import collections.abc as collections
-from flask import Flask, request, abort, jsonify
+from datetime import datetime, timezone
 from models import setup_db, Student, Instructor
 from flask_cors import CORS
 from auth import AuthError, requires_auth
+
 
 
 def create_app(test_config=None):
@@ -11,11 +24,22 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app)
 
+    # @app.after_request
+    # def apply_caching(response):
+    #     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    #     return response
+
+    @app.route('/', methods=['GET'])
+    def index():
+        return jsonify({
+            'success': "Home page"
+        })
+
     @app.route('/alive', methods=['GET'])
     def alive():
         return jsonify({
             'success': "Alive and well!"
-            })
+        })
 
     @app.route('/allStudents', methods=['GET'])
     #@requires_auth('get:students')
@@ -25,6 +49,13 @@ def create_app(test_config=None):
             formatted_students = [student.format() for student in students]
             if formatted_students == []:
                 abort(404)
+            data = []
+            for student in students:
+                data.append({
+                    'name': student.name,
+                    'studyLanguage': student.studyLanguage,
+                    'nativeLanguage': student.nativeLanguage,
+                })
             return jsonify({
                 'success': True,
                 'students': formatted_students,
@@ -105,11 +136,19 @@ def create_app(test_config=None):
                 instructor.format() for instructor in instructors]
             if formatted_instructors == []:
                 abort(404)
-            return jsonify({
-                'success': True,
-                'instructors': formatted_instructors,
-                'totalInstructors': len(instructors)
+            data = []
+            for instructor in instructors:
+                data.append({
+                    'name': instructor.name,
+                    'teachLanguage': instructor.teachLanguage,
+                    'fluentLanguage': instructor.fluentLanguage,
                 })
+            # return jsonify({
+            #     'success': True,
+            #     'instructors': formatted_instructors,
+            #     'totalInstructors': len(instructors)
+            #     })
+            return render_template('pages/instructors.html', instructors=data)
         except Exception:
             abort(404)
 
@@ -245,7 +284,11 @@ def create_app(test_config=None):
     return app
 
 
-app = create_app()
 
-if __name__ == '__main__':
-    app.run()
+# app = create_app()
+
+
+
+# if __name__ == '__main__':
+#     app.before_request()
+#     app.run()
