@@ -13,11 +13,6 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app)
 
-    # @app.after_request
-    # def apply_caching(response):
-    #     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-    #     return response
-
     @app.route('/', methods=['GET'])
     def index():
         return jsonify({
@@ -38,13 +33,13 @@ def create_app(test_config=None):
             formatted_students = [student.format() for student in students]
             if formatted_students == []:
                 abort(404)
-            data = []
-            for student in students:
-                data.append({
-                    'name': student.name,
-                    'studyLanguage': student.studyLanguage,
-                    'nativeLanguage': student.nativeLanguage,
-                })
+            # data = []
+            # for student in students:
+            #     data.append({
+            #         'name': student.name,
+            #         'studyLanguage': student.studyLanguage,
+            #         'nativeLanguage': student.nativeLanguage,
+            #     })
             return jsonify({
                 'success': True,
                 'students': formatted_students,
@@ -125,19 +120,18 @@ def create_app(test_config=None):
                 instructor.format() for instructor in instructors]
             if formatted_instructors == []:
                 abort(404)
-            data = []
-            for instructor in instructors:
-                data.append({
-                    'name': instructor.name,
-                    'teachLanguage': instructor.teachLanguage,
-                    'fluentLanguage': instructor.fluentLanguage,
-                })
-            # return jsonify({
-            #     'success': True,
-            #     'instructors': formatted_instructors,
-            #     'totalInstructors': len(instructors)
+            # data = []
+            # for instructor in instructors:
+            #     data.append({
+            #         'name': instructor.name,
+            #         'teachLanguage': instructor.teachLanguage,
+            #         'fluentLanguage': instructor.fluentLanguage,
             #     })
-            return render_template('pages/instructors.html', instructors=data)
+            return jsonify({
+                'success': True,
+                'instructors': formatted_instructors,
+                'totalInstructors': len(instructors)
+                })
         except Exception:
             abort(404)
 
@@ -273,11 +267,7 @@ def create_app(test_config=None):
     return app
 
 
+app = create_app()
 
-# app = create_app()
-
-
-
-# if __name__ == '__main__':
-#     app.before_request()
-#     app.run()
+if __name__ == '__main__':
+    app.run()
