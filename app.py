@@ -1,17 +1,6 @@
 
-import json
-import dateutil.parser
-import babel
-from flask import Flask, render_template, request, Response, flash, redirect, url_for, abort, jsonify
-from flask_moment import Moment
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-import logging
-from logging import Formatter, FileHandler
-from flask_wtf import Form
-from forms import ArtistForm
 import collections.abc as collections
-from datetime import datetime, timezone
+from flask import Flask, request, abort, jsonify
 from models import setup_db, Student, Instructor
 from flask_cors import CORS
 from auth import AuthError, requires_auth
